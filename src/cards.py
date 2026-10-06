@@ -54,12 +54,18 @@ def style(extra=""):
 </style>"""
 
 
-def svg_open(w, h, label):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
+def svg_open(w, h, label, pad=(0, 0)):
+    """pad adds a transparent side margin, so cards placed side by side get a gap without any
+    whitespace between them in the README (GitHub renders that whitespace as an underlined blip).
+    Only inner edges are padded, so a row's outer edges line up with the full-width cards."""
+    if isinstance(pad, int):
+        pad = (pad, pad)
+    l, r = pad
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w + l + r}" height="{h}" viewBox="{-l} 0 {w + l + r} {h}" '
             f'role="img" aria-label="{esc(label)}">')
 
 
-def pane(w, h, c, cmd, body, css="", label=None, dashed=False, aria=""):
+def pane(w, h, c, cmd, body, css="", label=None, dashed=False, aria="", pad=(0, 0)):
     """A card whose terminal-style title bar shows the command that 'printed' it."""
     dash = ' stroke-dasharray="6 5"' if dashed else ""
     lab = (f'<text x="{w-20}" y="25" text-anchor="end" class="m" font-size="12" fill="{c["muted"]}">{label}</text>'
@@ -68,7 +74,7 @@ def pane(w, h, c, cmd, body, css="", label=None, dashed=False, aria=""):
             f'<line x1="0.5" y1="40" x2="{w-0.5}" y2="40" stroke="{c["border"]}"/>'
             f'<text x="20" y="25" class="m" font-size="13"><tspan fill="{c["prompt"]}">$</tspan>'
             f'<tspan fill="{c["text"]}"> {esc(cmd)}</tspan></text>{lab}') if cmd else ""
-    return (f'{svg_open(w, h, aria or cmd)}{style(css)}'
+    return (f'{svg_open(w, h, aria or cmd, pad)}{style(css)}'
             f'<rect x="0.5" y="0.5" width="{w-1}" height="{h-1}" rx="12" fill="{c["bg"]}" stroke="{c["border"]}"{dash}/>'
             f'{head}{body}</svg>\n')
 
@@ -262,7 +268,8 @@ def cert(c, kind):
              lines(["Certified Kubernetes", "Administrator"], 140, 232, 22, c, size=16, weight=600, anchor="middle"),
              f'<circle cx="104" cy="291" r="4.5" fill="{c["warn"]}" class="pulse"/>'
              f'<text x="116" y="296" class="m" font-size="12.5" fill="{c["warn"]}">in progress</text>']
-        return pane(W, H, c, "", "".join(b), css, dashed=True, aria="Certified Kubernetes Administrator, in progress")
+        return pane(W, H, c, "", "".join(b), css, dashed=True, aria="Certified Kubernetes Administrator, in progress", pad=(7, 0))
+    pad = (0, 7) if kind == "aws" else (7, 7)
     name, issuer, date, img, delay = {
         "aws": (["AWS Certified Solutions", "Architect – Associate"], "Amazon Web Services", "Sep 2025", "aws-s.png", 1.5),
         "tf": (["HashiCorp Certified:", "Terraform Associate"], "HashiCorp", "Jan 2026", "tf-s.png", 6.0),
@@ -278,7 +285,7 @@ def cert(c, kind):
          lines(name, 140, 216, 22, c, size=16, weight=600, anchor="middle"),
          f'<text x="140" y="266" text-anchor="middle" class="s" font-size="13" fill="{c["muted"]}">{issuer} · {date}</text>',
          f'<text x="140" y="298" text-anchor="middle" class="m" font-size="12" fill="{c["accent"]}">verify on credly ↗</text>']
-    return pane(W, H, c, "", "".join(b), css, aria=" ".join(name))
+    return pane(W, H, c, "", "".join(b), css, aria=" ".join(name), pad=pad)
 
 
 # ---------------------------------------------------------------- projects
@@ -296,7 +303,7 @@ def project_loft(c):
                 "free tier, about $0–3 a month. One Worker serves",
                 "the React PWA and API; R2 and D1 store the media."], 22, 312, 21, c, size=13.5, color="muted"),
          chips(["Workers", "R2", "D1", "Zero Trust", "TypeScript"], 22, 372, c)]
-    return pane(W, H, c, "open loft-photo-gallery", "".join(b), css, label="↗ repo")
+    return pane(W, H, c, "open loft-photo-gallery", "".join(b), css, label="↗ repo", pad=(0, 7))
 
 
 def project_rag(c):
@@ -343,7 +350,7 @@ def project_rag(c):
                  "findings and remediation playbooks, with semantic",
                  "search endpoints on top."], 22, 312, 21, c, size=13.5, color="muted"),
           chips(["Python", "FastAPI", "ChromaDB", "LLM APIs"], 22, 372, c)]
-    return pane(W, H, c, "cat hackathon/README.md", "".join(b), css)
+    return pane(W, H, c, "cat hackathon/README.md", "".join(b), css, pad=(7, 0))
 
 
 # ---------------------------------------------------------------- logs drawer: career log streams in when opened
@@ -508,7 +515,7 @@ def button(c, kind):
         ic = (f'<svg x="22" y="16" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{c["text"]}" stroke-width="1.8">'
               f'<rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5 L12 13 L20.5 6.5"/></svg>')
         label, sub = "Email", "muhsinjifri@gmail.com"
-    return (f'{svg_open(W, H, label)}{style()}'
+    return (f'{svg_open(W, H, label, 8)}{style()}'
             f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="28" fill="{c["bar"]}" stroke="{c["border"]}"/>{ic}'
             f'<text x="58" y="34" class="s" font-size="15" font-weight="600" fill="{c["text"]}">{label}</text>'
             f'<text x="{58 + len(label)*9 + 10}" y="34" class="m" font-size="12.5" fill="{c["muted"]}">{sub}</text></svg>\n')
