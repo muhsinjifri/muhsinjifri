@@ -1,49 +1,57 @@
-## Hi, I'm Sayed Muhsin Jifri 👋
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
+  <img alt="kubectl describe engineer muhsin: Sayed Muhsin Jifri, DevOps Engineer at IQVIA, Bengaluru" src="assets/header-light.svg" width="100%">
+</picture>
 
-DevOps Engineer at **IQVIA** in Bengaluru, working on CI/CD, GitOps and Kubernetes platforms on AWS.
+I'm a DevOps engineer at IQVIA in Bengaluru. Most of my work is getting software from a merge request into production safely. I containerize services and run them on Kubernetes, build the CI/CD and GitOps pipelines that deploy them, and define the AWS infrastructure underneath in Terraform.
 
-- ☸️ Containerize applications and run them on **Kubernetes** in AWS
-- 🔁 Build **CI/CD and GitOps** delivery pipelines and support production releases
-- 🏗️ Manage cloud infrastructure as code with **Terraform**
-- 🔐 Care about secure-by-default platforms: least-privilege IAM and no static secrets
-- 📈 Monitor and troubleshoot production systems with modern observability tooling
-- 📚 Currently preparing for the **CKA** (Certified Kubernetes Administrator)
-- 💼 **Open to DevOps / Platform Engineering opportunities.** Feel free to reach out!
+I care about platforms that are reproducible, easy to observe, and have no long-lived secrets.
 
-### 🧰 Tech stack
+Outside work I'm studying for the **CKA** and build small things on Cloudflare's edge.
 
-**Cloud & IaC** <br>
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonwebservices&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-844FBA?style=flat&logo=terraform&logoColor=white)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=flat&logo=cloudflare&logoColor=white)
+### Toolbox
 
-**Containers & Kubernetes** <br>
-![Kubernetes](https://img.shields.io/badge/Kubernetes_(EKS)-326CE5?style=flat&logo=kubernetes&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
-![Helm](https://img.shields.io/badge/Helm-0F1689?style=flat&logo=helm&logoColor=white)
-![Argo CD](https://img.shields.io/badge/Argo_CD-EF7B4D?style=flat&logo=argo&logoColor=white)
+<table>
+  <tr><td><b>Cloud</b></td><td>AWS, Cloudflare</td></tr>
+  <tr><td><b>Containers</b></td><td>Kubernetes (EKS), Docker, Helm</td></tr>
+  <tr><td><b>Delivery</b></td><td>GitLab CI/CD, Argo CD, GitOps</td></tr>
+  <tr><td><b>Infrastructure as code</b></td><td>Terraform</td></tr>
+  <tr><td><b>Observability</b></td><td>Datadog, CloudWatch, Splunk</td></tr>
+  <tr><td><b>Scripting</b></td><td>Python, Bash</td></tr>
+</table>
 
-**CI/CD & tooling** <br>
-![GitLab CI](https://img.shields.io/badge/GitLab_CI%2FCD-FC6D26?style=flat&logo=gitlab&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
-![Datadog](https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)
+### Certifications
 
-**Scripting** <br>
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnubash&logoColor=white)
+<p>
+  <a href="https://www.credly.com/badges/bdd0eda1-411b-4cd4-a2b6-10155483f8cf"><img src="https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png" alt="AWS Certified Solutions Architect – Associate" height="120"></a>
+  &nbsp;&nbsp;
+  <a href="https://www.credly.com/badges/fff54a45-392c-44fd-9e08-bd745c8e09a3"><img src="https://images.credly.com/images/6f614b71-3f2e-488e-8b29-71e90d4dbf80/blob" alt="HashiCorp Certified: Terraform Associate (004)" height="120"></a>
+</p>
 
-### 🏅 Certifications
+### Things I've built
 
-- [AWS Certified Solutions Architect – Associate](https://www.credly.com/badges/bdd0eda1-411b-4cd4-a2b6-10155483f8cf) (2025)
-- [HashiCorp Certified: Terraform Associate (004)](https://www.credly.com/badges/fff54a45-392c-44fd-9e08-bd745c8e09a3) (2026)
+<table>
+  <tr>
+    <td width="42%">
+      <a href="https://github.com/muhsinjifri/loft-photo-gallery"><img src="https://raw.githubusercontent.com/muhsinjifri/loft-photo-gallery/main/docs/screenshot-home.png" alt="Loft timeline"></a>
+    </td>
+    <td>
+      <a href="https://github.com/muhsinjifri/loft-photo-gallery"><b>Loft</b></a><br>
+      A private photo and video gallery that runs on Cloudflare's free tier for about $0–3 a month. It uses a single Worker serving both the React PWA and the API, R2 for media, and D1 for metadata, all behind Cloudflare Zero Trust. Thumbnails are generated in the browser, so the server does no image processing.
+      <br><br>
+      <sub>TypeScript · Hono · Cloudflare Workers · R2 · D1</sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <b>Regulatory Audit RAG System</b>, IQVIA Hackathon finalist (Top 10)<br>
+      A retrieval service that indexes historical audit findings and remediation playbooks for semantic search.
+      <br>
+      <sub>Python · FastAPI · ChromaDB · LLM APIs</sub>
+    </td>
+  </tr>
+</table>
 
-### 🛠️ Projects
+### Say hello
 
-- **[Loft](https://github.com/muhsinjifri/loft-photo-gallery)**: a private, self-hosted photo and video gallery on Cloudflare Workers, R2 and D1, behind Cloudflare Zero Trust, running for about $0–3/month
-- 🏆 **Regulatory Audit RAG System**: IQVIA Hackathon finalist (Top 10). A Python/FastAPI service using ChromaDB for semantic search over audit findings
-
-### 📫 Connect
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhsinjifri)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:muhsinjifri@gmail.com)
+I'm open to DevOps and Platform Engineering roles. The best way to reach me is [LinkedIn](https://www.linkedin.com/in/muhsinjifri) or [email](mailto:muhsinjifri@gmail.com).
